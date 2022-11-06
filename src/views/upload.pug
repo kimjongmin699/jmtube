@@ -1,0 +1,13 @@
+extends base.pug
+
+block content 
+    h3 hello from upload
+    if errorMessage 
+        span=errorMessage
+    form(method="POST", enctype='multipart/form-data')
+        label(for='video') Video File 
+        input(type='file', accept='video/*', id='video', name='video', required)
+        input(name="title", placeholder='Title',required, type='text', minLength=3)
+        input(name="description", placeholder='description',required, type='text')
+        input(name="hashtags", placeholder='hashtags',required, type='text')
+        input(type='submit', value='Upload Video')

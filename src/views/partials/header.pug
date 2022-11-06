@@ -1,0 +1,34 @@
+header
+    a(href='/').header__logo
+        i.fab.fa-youtube
+    nav 
+        ul 
+            li    
+                a(href='/search') 
+                    i.fas.fa-search
+            if loggedIn 
+                li    
+                    a(href='/users/edit') Edit Profile
+                li    
+                    a(href='/users/logout') Logout
+                li    
+                    a(href=`/users/${loggedInUser._id}`) #{loggedInUser.email}의 Profile
+                li 
+                    a(href='/videos/upload') Upload Video
+
+                li
+                    if loggedInUser.avatar === '' 
+                        span 😎
+                    else 
+                        img.header__avatar(src='/'+loggedInUser.avatarUrl)
+        
+            else
+                li    
+                    a(href='/join').header_btn 회원가입
+                li    
+                    a(href='/login') 로그인
+
+            //- if loggedInUser.socialOnly 
+            //-     img(src=user.avatarUrl).avatar
+            //- else 
+            //-     img(src='/'+user.avatarUrl).avatar

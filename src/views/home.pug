@@ -1,0 +1,26 @@
+extends base.pug
+include mixins/video
+
+//- block head 
+//-     title Home | JmTube
+
+block content
+    div.video-grid 
+        each video in videos 
+            +video(video)
+        else 
+            span.empty__message No Video found
+    //- h1 Home
+    //- input(placeholder="What is your name")
+    //- button send
+
+    //- //- ul 
+    //- //-     each video in videoss 
+    //- //-         li=video
+    //- //-     else 
+    //- //-         li Sorry nothing found.
+          
+    //- each potato in videos 
+    //-     +video(potato)      
+    //- else 
+    //-     li Sorry nothing found.

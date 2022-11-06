@@ -1,0 +1,12 @@
+extends base.pug
+
+//- block head 
+//-     title Edit | JmTube
+
+block content 
+    h4 Update Video!
+    form(method="POST")
+        input(name="title",placeholder="Video Title", value=video.title, required)
+        input(name="description", placeholder='description',required, type='text', value=video.description)
+        input(name="hashtags", placeholder='hashtags',required, type='text', value=video.hashtags.join())
+        input(value='Save', type="submit") 
