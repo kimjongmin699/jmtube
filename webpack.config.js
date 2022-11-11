@@ -15,8 +15,8 @@ module.exports = {
       filename: 'css/styles.css',
     }),
   ],
-  mode: 'development',
-  watch: true, //front의 nodemon임. restart할 필요 없음.
+  //mode: 'development',
+  //watch: true, //front의 nodemon임. restart할 필요 없음.
   output: {
     filename: 'js/[name].js',
     path: path.resolve(__dirname, 'assets'),
