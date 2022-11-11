@@ -1,5 +1,6 @@
 import User from '../models/User'
 import Video from '../models/Video'
+import Comment from '../models/Comment'
 
 // const handleSearch = (error, videos) => {
 //   console.log('error', error)
@@ -19,7 +20,7 @@ export const trending = async (req, res) => {
 
 export const seeVideo = async (req, res) => {
   const { id } = req.params
-  const video = await Video.findById(id).populate('owner')
+  const video = await Video.findById(id).populate('owner').populate('comments')
   // const owner = await User.findById(video.owner)
   console.log(video)
   if (!video) {
@@ -35,6 +36,7 @@ export const getEdit = async (req, res) => {
     return res.render('404', { pageTitle: 'Video not found' })
   }
   if (String(video.owner) !== String(req.session.user._id)) {
+    req.flash('error', 'Not authorized')
     return res.status(400).redirect('/')
   }
   return res.render('edit', { pageTitle: 'Edit Video', video })
@@ -123,4 +125,42 @@ export const search = async (req, res) => {
     }).populate('owner')
   }
   res.render('search', { pageTitle: 'Search', videos })
+}
+
+export const registerView = async (req, res) => {
+  const { id } = req.params
+  const video = await Video.findById(id)
+  if (!video) {
+    return res.sendStatus(404)
+  }
+  video.meta.views = video.meta.views + 1
+  await video.save()
+  return res.sendStatus(200)
+}
+
+export const createComment = async (req, res) => {
+  // console.log(req.body)
+  // console.log(req.params)
+  // console.log(req.session)
+  // return res.end()
+  const {
+    session: { user },
+    body: { text },
+    params: { id },
+  } = req
+
+  const video = await Video.findById(id).populate('comments')
+  if (!video) {
+    return res.sendStatus(404)
+  }
+  const comment = await Comment.create({
+    text,
+    owner: user._id,
+    video: id,
+  })
+  video.comments.push(comment._id)
+  video.save()
+  console.log('comments', video.comments)
+  console.log(video.comments.map((comment) => comment.createdAt))
+  return res.status(201).json({ newCommentId: comment._id })
 }

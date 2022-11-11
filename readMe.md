@@ -18,3 +18,6 @@ videoRouter(/videos)
 
 https://cdnjs.com/libraries/font-awesome
 https://meyerweb.com/eric/tools/css/reset/
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement
+https://github.com/ffmpegwasm/ffmpeg.wasm
+https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/mimeType

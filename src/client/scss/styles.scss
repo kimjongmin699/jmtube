@@ -8,11 +8,13 @@
 @import './components/shared.scss';
 @import './components/forms.scss';
 @import './components/social-login.scss';
+@import './components/video-play.scss';
 
 //screens
 @import './screens/search.scss';
 @import './screens/profile.scss';
 @import './screens/edit-profile.scss';
+@import './screens/watch.scss';
 
 a {
   color: inherit;
@@ -26,9 +28,43 @@ body {
   color: white;
 }
 
-main{
+main {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   margin-top: 50px;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+}
+
+.message {
+  animation: goAway 0.5s ease-in-out forwards;
+  animation-delay: 3s;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 60px;
+  &.error {
+    background-color: tomato;
+    color: white;
+  }
+  &.info {
+    background-color: tomato;
+    color: white;
+  }
 }

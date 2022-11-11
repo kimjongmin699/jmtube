@@ -155,7 +155,9 @@ export const finishGithubLogin = async (req, res) => {
 }
 
 export const logout = (req, res) => {
-  req.session.destroy()
+  req.session.user = null
+  req.session.loggedIn = false
+  req.flash('info', 'bye! bye!')
   return res.redirect('/')
 }
 export const seeUser = async (req, res) => {
