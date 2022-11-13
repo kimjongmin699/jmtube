@@ -51,11 +51,6 @@ app.use(flash())
 app.use(localsMiddleware)
 app.use('/uploads', express.static('uploads')) //'/uploads' path로 uploads폴더에 접근허락해조
 app.use('/static', express.static('assets')) //'/assets' path로 assets폴더에 접근허락해조
-app.use((req, res, next) => {
-  res.header('Cross-Origin-Embedder-Policy', 'require-corp')
-  res.header('Cross-Origin-Opener-Policy', 'same-origin')
-  next()
-})
 app.use('/', rootRouter)
 app.use('/videos', videoRouter)
 app.use('/users', userRouter)

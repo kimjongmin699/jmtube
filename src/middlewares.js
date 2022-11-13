@@ -63,3 +63,9 @@ export const videoUpload = multer({
   },
   storage: isHeroku ? s3VideoUploader : undefined,
 })
+
+// export const recording = (req, res, next) => {
+//   res.header('Cross-Origin-Embedder-Policy', 'require-corp')
+//   res.header('Cross-Origin-Opener-Policy', 'same-origin')
+//   next()
+// }
