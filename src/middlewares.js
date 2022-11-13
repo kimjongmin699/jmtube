@@ -9,9 +9,15 @@ const s3 = new aws.S3({
   }
 })
 
-const multerUploader = multerS3({
+const s3ImageUploader = multerS3({
   s3:s3,
-  bucket:'jmtube',
+  bucket:'jmtube/images',
+  acl:'public-read'
+})
+
+const s3VideoUploader = multerS3({
+  s3:s3,
+  bucket:'jmtube/videos',
   acl:'public-read'
 })
 
@@ -45,12 +51,12 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 4000000,
   },
-  storage:multerUploader
+  storage:s3ImageUploader
 })
 export const videoUpload = multer({
   dest: 'uploads/videos/',
   limits: {
     fileSize: 250000000,
   },
-  storage:multerUploader
+  storage:s3VideoUploader
 })
