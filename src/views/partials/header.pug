@@ -19,11 +19,9 @@ header
                 li
                     if loggedInUser.avatar === '' 
                         span 😎
-                    else 
-                        if loggedInUser.avatarUrl.includes('github')
-                            img.header__avatar(src=loggedInUser.avatarUrl)
-                        else 
-                            img.header__avatar(src=loggedInUser.avatarUrl)
+                    else                   
+                        img.header__avatar(src=loggedInUser.avatarUrl)
+                            
             else
                 li    
                     a(href='/join').header_btn 회원가입
